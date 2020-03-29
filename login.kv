@@ -1,0 +1,90 @@
+ScreenManagement:
+    LoginPage:
+    UserPage:
+    SignUpPage:
+    CameraClick:
+
+<LoginPage>:
+    name: "login_page"
+
+    GridLayout:
+        cols:1
+
+        GridLayout:
+            cols: 2
+            Label:
+                text: "Username: "
+
+            TextInput:
+                id: login
+                multiline: False
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: passw
+                multiline: False
+
+        Button:
+            text: "Submit"                 
+            on_release: root.verify_credentials()
+
+<UserPage>:
+    name: "user"
+    Button:
+        text: "back"
+        on_release: app.root.current = "login_page"
+
+
+<SignUpPage>:
+    name: "SignUp_Page"
+
+    GridLayout:
+        cols:1
+
+        GridLayout:     
+            cols: 2
+            Label:
+                text: "Username: "
+
+            TextInput:
+                id: login
+                multiline: False
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: passw
+                multiline: False
+
+            Label:
+                text: "Full Name: "
+
+            TextInput:
+                id: name
+                multiline: False
+    
+        Button:
+            text: "Submit"                 
+            on_release: root.authenticate_credentials()
+
+<CameraClick>:
+    name: 'camera'
+    
+    orientation: 'vertical'
+    Camera:
+        id: camera
+        resolution: (640, 480)
+        play: False
+    ToggleButton:
+        text: 'Play'
+        on_press: camera.play = not camera.play
+        size_hint_y: None
+        height: '48dp'
+    Button:
+        text: 'Capture'
+        size_hint_y: None
+        height: '48dp'
+        on_press: root.capture()
